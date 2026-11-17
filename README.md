@@ -5,8 +5,7 @@
 `ds2agent` is a multi-agent AI system that automatically transforms device datasheets into
 interactive AI agents exposing **three device models** — knowledge, driver, behavior — that
 together enable **six scenarios** — board-level, digital-twin, hardware-calibration, mcp
-interface, trial-running, reference-circuit. It is a datasheet-domain adaptation of
-[Paper2Agent](https://github.com/jmiao24/Paper2Agent).
+interface, trial-running, reference-circuit.
 
 ds2agent coordinates parallel specialist agents to turn a datasheet (and optional reference
 driver/example code) into a reviewed knowledge skill, a tested MCP device agent, or both.
