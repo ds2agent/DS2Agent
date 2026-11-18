@@ -1,28 +1,38 @@
-# ds2agent: Reimagining Datasheets as AI Agents
+# ds2agent
+
+Turn a device datasheet into a reviewed reading skill, a tested MCP server, and — when a
+target board is in scope — real board firmware.
 
 ## Overview
 
-`ds2agent` is a multi-agent AI system that automatically transforms device datasheets into
-interactive AI agents exposing **three device models** — knowledge, driver, behavior — that
-together enable **six scenarios** — board-level, digital-twin, hardware-calibration, mcp
-interface, trial-running, reference-circuit.
+Given a datasheet (and optional reference driver/example code), `ds2agent` delivers a project
+under `dist/<scope>-agent/`:
 
-ds2agent coordinates parallel specialist agents to turn a datasheet (and optional reference
-driver/example code) into a reviewed knowledge skill, a tested MCP device agent, or both.
-The conversion is performed by your coding agent, not by hand.
-MCP/full outputs also include a generated project-root `SKILL.md`: a consumer entry that
-routes seven kinds of requests to the delivered instructions and actual supported MCP tools.
+- a consumer `SKILL.md` that routes requests to the actual delivered tools;
+- one MCP service (`agent_mcp.py`) exposing, per device, tools grouped by three models:
+  - **knowledge** — cited facts, retrieval, Q&A, tutorials;
+  - **driver** — a portable C driver and register/config/measure operations;
+  - **behavior** — registers, states, parameter min/typ/max, and transfer functions;
+- optional board specialization — target adapters, `board_init`, and a complete build project.
+
+The three models back six scenarios: board-level bring-up, digital twin, hardware
+calibration, the MCP interface itself, trial-running, and reference circuits.
+
+Conversion is done by your coding agent, not by hand. Parallel specialist agents handle
+selection, implementation, and independent verification; MCP/full outputs include the
+generated project-root `SKILL.md` that routes seven kinds of requests to the delivered
+instructions and supported tools.
 
 ## Quick Start
 
 The simplest way is to ask your coding agent (Claude Code, Codex, etc.) to install the
-`ds2agent` skill, then agentify a datasheet:
+`ds2agent` skill, then convert a datasheet:
 
 ```
 Read the ds2agent skill tree at skills/ds2agent and install the ds2agent skill for this
 coding agent.
 
-Use the ds2agent skill to agentify this datasheet and its associated files, alongside its
+Use the ds2agent skill to convert this datasheet and its associated files, alongside its
 reference code repository if available. Follow the skill instructions for the workflow,
 verification, and final delivery.
 
@@ -150,7 +160,7 @@ Focus on the I2C register map and motion data readout.
    prompt. The skill installs the generated server's dependencies in its project environment
    during conversion.
 
-## How to create a datasheet agent
+## Using the delivered agent
 
 Connect the generated datasheet MCP server to an AI coding agent, such as Claude Code, Codex,
 or the Gemini CLI, to use its device tools in conversation.
