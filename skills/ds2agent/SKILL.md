@@ -28,6 +28,7 @@ Read as needed while converting:
 | Directory | Purpose |
 |---|---|
 | [external/tools/](external/tools/) | versioned extraction, compilation, emulation, schematic and flash/debug workflows |
+| [simulation/](simulation/) | Unicorn F103 co-simulation: Device contract, CLI tuning, device-model generation |
 | [external/boards/](external/boards/) | exact NUCLEO-F103 / G071 / F767 PCB, wiring, power and probe bindings |
 | [external/libraries/](external/libraries/) | STM32F1 / G0 HAL initialization, address handling, errors and portable-driver boundaries |
 | [external/interfaces/](external/interfaces/) | I2C / SPI / UART / 1-Wire framing, electrical constraints and host/MCU bridge limits |
@@ -130,12 +131,18 @@ scopes and limitations.
 
 ## Simulation and hardware evidence
 
-Follow [simulation backends](external/tools/qemu.md): model operations, native execution of
-the exported C driver, and optional QEMU firmware execution are distinct backends. QEMU
-requires verified machine/peripheral support, not just a board profile or matching CPU.
-Keep source, model, native, QEMU and hardware evidence separate. Board refinement is not a
-prerequisite for source/simulation delivery; unavailable requested hardware work remains
-blocked. Simulation never supplies physical calibration observations.
+Two simulation paths, distinct backends:
+
+- [Unicorn F103 co-simulation](simulation/SKILL.md) — Python device models (adjustable
+  parameters + CLI) inside the provided F103 emulator, for firmware behavior.
+- [QEMU backend](external/tools/qemu.md) — QEMU firmware execution requires verified
+  machine/peripheral support, not just a board profile or matching CPU; writing a C device
+  model follows [qemu-device-model.md](external/tools/qemu-device-model.md).
+
+Model operations, native execution of the exported C driver, and QEMU firmware execution are
+distinct backends. Keep source, model, native, QEMU and hardware evidence separate. Board
+refinement is not a prerequisite for source/simulation delivery; unavailable requested
+hardware work remains blocked. Simulation never supplies physical calibration observations.
 
 Hard contracts:
 

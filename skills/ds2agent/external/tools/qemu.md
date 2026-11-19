@@ -74,7 +74,8 @@ No QEMU target is certified by this skill's board profiles alone.
 `-device` instantiates device types supported by the selected QEMU build; it does not load
 arbitrary C mocks. A new sensor model requires QEMU device/bus integration and a build that
 includes it, followed by independent protocol/state checks. Do not generate such a port
-implicitly to fill missing target support.
+implicitly to fill missing target support. For writing and wiring such a model, follow
+[qemu-device-model.md](qemu-device-model.md).
 
 If a driver uses a fake HAL inside QEMU, label the scope **driver on target CPU**, not MCU
 I2C/SPI integration. CPU/startup-only execution likewise cannot establish sensor support.
