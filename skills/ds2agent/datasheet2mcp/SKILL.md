@@ -27,8 +27,10 @@ verification.
 3. Choose the route by the device's digital interface (I2C / SPI / UART / 1-Wire). Use the
    stages below; interface-specific notes live in [routes](references/routes/README.md).
    For Trial-Running, select explicit `model` / `native` / optional `qemu` backends using
-   [simulation backends](../external/tools/qemu.md). Native execution verifies the actual
-   exported C driver; a fake-transport Python call is not equivalent evidence.
+   [simulation backends](../external/tools/qemu.md). For device co-simulation models with
+   runtime `set/get/list` tuning, follow the [simulation](../simulation/SKILL.md) skill.
+   Native execution verifies the actual exported C driver; a fake-transport Python call is
+   not equivalent evidence.
 4. Apply [tool selection and minimal wrappers](references/tool-selection-and-wrapping.md)
    during scanning, implementation, and independent verification. Read
    [runtime requirements](references/runtime.md) when preparing environments and validating
