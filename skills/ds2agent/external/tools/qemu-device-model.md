@@ -39,12 +39,12 @@ A minimal I2C slave is one C file plus a build registration:
 - **Build**: add the object to the target's `meson.build` sources so it links into the
   machine.
 - **Wiring**: instantiate the device and attach it to the controller's `I2CBus`
-  (`i2c_realize_and_unref` or an `i2c` bus property) in the SoC/machine init.
+  (`i2c_slave_create_simple` or an `i2c` bus property) in the SoC/machine init.
 
 The interface, constants, and registration macros are release-specific. Read the selected
 QEMU tree, not this summary: `hw/i2c/` for existing slave devices, the I2C header for
-`I2CSlaveClass` and event values, `hw/i2c/stm32f2xx_i2c.c` for the controller side, and the
-machine's `*_soc.c` for wiring.
+`I2CSlaveClass` and event values, `hw/i2c/core.c` plus a real controller (e.g.
+`hw/i2c/imx_i2c.c`) for the master side, and the machine's `*_soc.c` for wiring.
 
 ## What the datasheet provides vs what you write
 

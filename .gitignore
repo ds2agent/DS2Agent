@@ -47,3 +47,4 @@ pip-log.txt
 
 # Local simulation model (not versioned; generated device models / MCU emulator)
 local_sim/
+data/
